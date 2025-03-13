@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+        <meta name="renderer" content="webkit">
+        <meta name="keywords" content="予昕的个人主页,个人主页,予昕,html,博客,clanota,流月镇">
+        <meta name="description" content="欢迎来到予昕的个人主页！"> <!-- MDUI CSS -->
+        <link rel="stylesheet" href="https://npm.elemecdn.com/mdui@1.0.2/dist/css/mdui.min.css">
+        <title>予昕的个人主页</title>
+        <script type="text/javascript">
+        function showDate() {
+            var now = new Date(); // 获取当前时间
+            var year = now.getFullYear(); // 获取当前年份
+            var month = now.getMonth() + 1; // 获取当前月份，注意月份从0开始计数
+            var day = now.getDate(); // 获取当前日
+            var weekday = ["日", "一", "二", "三", "四", "五", "六"][now.getDay()]; // 获取当前星期几
+        
+            // 格式化月份和日期，确保它们始终为两位数
+            month = (month < 10 ? '0' : '') + month;
+            day = (day < 10 ? '0' : '') + day;
+        
+            // 组合完整的日期字符串
+            var fullDate = year + '年' + month + '月' + day + '日 星期' + weekday;
+        
+            // 将日期字符串插入到页面中
+            document.getElementById('currentDate').innerHTML = fullDate;
+        }
+        
+        // 页面加载完成后立即调用showDate函数
+        window.onload = function() {
+            showDate();
+        };
+    </script>
+        <script>
+        fetch('https://v1.hitokoto.cn')
+          .then(response => response.json())
+          .then(data => {
+            const hitokoto = document.querySelector('#hitokoto_text')
+            hitokoto.href = `https://hitokoto.cn/?uuid=${data.uuid}`
+            hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+    </script>
+    </head>
+    <body class="mdui-theme-primary-indigo">
+        <div class="mdui-card">
+            <!-- 卡片头部，包含头像、标题、副标题 -->
+            <div class="mdui-card-header">
+                <img class="mdui-card-header-avatar" src="http://dailybing.com/api/v1/">
+                <div class="mdui-card-header-title" id="currentDate">
+                    时间加载中
+                </div>
+                <div class="mdui-card-header-subtitle" id="hitokoto_text">
+                    一言加载中
+                </div>
+            </div> <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
+            <div class="mdui-card-media"><img src="card.jpg">
+            </div>
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">
+                    予昕
+                </div>
+                <div class="mdui-card-primary-subtitle">
+                    来自浙江宁波的中专废物一枚
+                </div>
+            </div> <!-- 卡片的内容 -->
+            <div class="mdui-card-content">
+                <li>个人简介</li>
+                <p>Hi，我是予昕。来自浙江宁波，就读于宁波市鄞州职业教育中心学校，专业是数控技术应用。我热爱计算机技术和手工制作，也是一个Minecraft的忠实玩家，目前运营着一个Minecraft服务器。在线下，我其实很好说话的啦，期待与各位交流计算机方面的心得体会呐～</p>
+                <li>联系方式</li>
+                <p>微信：clanotacn<br>QQ：726797256<br>小红书：2841787075<br>哔哩哔哩：1092582912<br>电子邮件：xy@090508.xyz</p>
+            </div>
+        </div><!-- MDUI JavaScript -->
+        <script src="https://npm.elemecdn.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    </body>
+</html>
